@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html">
+		
+        <title> Велорент </title>
+
+		<link rel="stylesheet" type="text/css" href="demo.css" />
+		<link rel="stylesheet" type="text/css" href="set1.css" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		
+		<script>
+			
+			function gettime(){
+				temp_date = new Date();
+				day = temp_date.getDate();
+				if(day<10)
+					day="0"+day;
+				month = temp_date.getMonth() + 1;
+				if(month<10)
+					month="0"+month;
+				year = temp_date.getFullYear();
+				hours = temp_date.getHours();
+				if(hours<10)
+					hours="0"+hours;
+				minutes = temp_date.getMinutes();
+				if(minutes<10)
+					minutes="0"+minutes;
+				seconds = temp_date.getSeconds();
+				if(seconds<10)
+					seconds="0"+seconds;
+				document.getElementById("curtime").innerHTML = "Текущее время: " 
+						+ year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+				document.getElementById("sendcurtime").value = year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+			}
+			function onl(){
+				gettime();
+				setInterval(function () {
+					temp_date = new Date();
+					day = temp_date.getDate();
+					if(day<10)
+						day="0"+day;
+					month = temp_date.getMonth() + 1;
+					if(month<10)
+						month="0"+month;
+					year = temp_date.getFullYear();
+					hours = temp_date.getHours();
+					if(hours<10)
+						hours="0"+hours;
+					minutes = temp_date.getMinutes();
+					if(minutes<10)
+						minutes="0"+minutes;
+					seconds = temp_date.getSeconds();
+					if(seconds<10)
+						seconds="0"+seconds;
+					document.getElementById("curtime").innerHTML = "Текущее время: " 
+							+ year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+					document.getElementById("sendcurtime").value = year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+				}, 1000);
+			}
+		</script>
+	</head>
+	<body onload="onl();">
+		<div class="container">
+			<header class="codrops-header">
+				<h1><%=tmpbike.name %><span><%=tmpbike.description%></span></h1>
+				
+			</header>
+			<div class="content">
+				<div class="grid">
+					<figure class="effect-sadie">
+						<img src=<%=tmpbike.img %> alt="img12" >
+						<figcaption>
+							<div>
+							</div>
+						</figcaption>
+					</figure>
+					<form action="postresult.html" method="post">
+						<fieldset>
+						  <p class="contact-input">
+							<label for="tmptime" class="contact_input" id="curtime"></label>
+							<p>
+							<label for="tmptime" class="contact_input" > Для начала аренды нажмите на кнопку</label>
+							<input type="hidden" name="tmptime" id="sendcurtime" required>
+						  </p>
+						  <p >
+							<input type="hidden" name="idrent" value="<%=idrent%>" required>
+						  </p>
+						  <p >
+							<input type="hidden" name="type" value="1" required>
+						  </p>
+						  <p class="contact-submit">
+							<input type="submit" value="Начать поездку">
+						  </p>
+						</fieldset>
+					  </form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

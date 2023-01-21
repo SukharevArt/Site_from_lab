@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html">
+		
+        <title> Велорент </title>
+
+		<link rel="stylesheet" type="text/css" href="demo.css" />
+		<link rel="stylesheet" type="text/css" href="set1.css" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		
+		<script>
+			function gettime(){
+				curr = new Date();
+				start = new Date("<%=tmprent.time_start%>");
+				duration = curr - start;
+				seconds = parseInt((duration/1000)%60);
+				minutes = parseInt((duration/(1000*60))%60);
+				hours = parseInt((duration/(1000*60*60)));
+				hours = (hours < 10) ? "0" + hours : hours;
+				minutes = (minutes < 10) ? "0" + minutes : minutes;
+				seconds = (seconds < 10) ? "0" + seconds : seconds;
+				// alert(hours+":"+minutes+":"+seconds);
+				document.getElementById("curtime").innerHTML = "Время с начала поездки: " 
+						+ hours+":"+minutes+":"+seconds;
+				document.getElementById("sendcurtime").value = duration/1000;
+			}
+			function onl(){
+				gettime();
+				setInterval(function () {
+					curr = new Date();
+					start = new Date("<%=tmprent.time_start%>");
+					duration = curr - start;
+					seconds = parseInt((duration/1000)%60);
+					minutes = parseInt((duration/(1000*60))%60);
+					hours = parseInt((duration/(1000*60*60)));
+					hours = (hours < 10) ? "0" + hours : hours;
+					minutes = (minutes < 10) ? "0" + minutes : minutes;
+					seconds = (seconds < 10) ? "0" + seconds : seconds;
+					// alert(hours+":"+minutes+":"+seconds);
+					document.getElementById("curtime").innerHTML = "Время с начала поездки: " 
+							+ hours+":"+minutes+":"+seconds;
+					document.getElementById("sendcurtime").value = duration/1000;
+				}, 1000);
+			}
+		</script>
+	</head>
+	<body onload="onl();">
+		<div class="container">
+			<header class="codrops-header">
+				<h1><%=tmprent.name %><span><%=tmprent.description%></span></h1>
+				
+			</header>
+			<div class="content">
+				<div class="grid">
+					<figure class="effect-sadie">
+						<img src=<%=tmprent.img %> alt="img12" >
+						<figcaption>
+							<div>
+							</div>
+						</figcaption>
+					</figure>
+					<form action="postresult2.html" method="post">
+						<fieldset>
+						  <p class="contact-input">
+							<label for="duration" class="contact_input" id="curtime"></label>
+							<input type="hidden" name="duration" id="sendcurtime" required>
+						  </p>
+						  <p >
+							<input type="hidden" name="idrent" value="<%=tmprent.idrent%>" required>
+						  </p>
+						  <p >
+							<input type="hidden" name="type" value="2" required>
+						  </p>
+						  <p class="contact-input">
+							<label for="select" class="select">
+							  <select name="subject" id="select" required>
+								<option value="" selected>Для завершения аренды выберите пункт прибытия и нажмите кнопку…</option>
+								<% for(var i=0;i<rental_points.length;i++){ %>
+									<option value="<%=rental_points[i].idr%>"><%=rental_points[i].adress%></option>
+								<%}%>
+							  </select>
+							</label>
+						  </p>
+						  <p class="contact-submit">
+							<input type="submit" value="Завершить аренду">
+						  </p>
+						</fieldset>
+					  </form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

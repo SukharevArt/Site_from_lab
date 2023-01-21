@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html">
+		
+        <title> Велорент </title>
+
+		<link rel="stylesheet" type="text/css" href="demo.css" />
+		<link rel="stylesheet" type="text/css" href="set1.css" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<script>
+			function calc(){
+				duration = parseInt("<%=time%>");
+				seconds = parseInt((duration)%60);
+				minutes = parseInt((duration/60)%60);
+				hours = parseInt((duration/(60*60)));
+				hours = (hours < 10) ? "0" + hours : hours;
+				minutes = (minutes < 10) ? "0" + minutes : minutes;
+				seconds = (seconds < 10) ? "0" + seconds : seconds;
+				document.getElementById("calcc").innerHTML = hours+":"+minutes+":"+seconds; 
+			}
+		</script>
+	</head>
+	<body onload="calc();">
+		<div class="container">
+			<header class="codrops-header">
+				<h1>Велорент благодарит вас за, то что воспользовались нашими услугами.
+					<span>Продолжитльеность вашей аренды <b id="calcc"></b> и сумма оплаты составляет <%=sum%> руб.
+						Для оплаты вы можете воспользоваться терминалом в пункте проката или оплатить онлайн по ссылке:</span>
+					<a href="<%=link%>"> <span><%=link%></span> </a>
+				</h1>
+				
+			</header>
+		</div>
+	</body>
+</html>

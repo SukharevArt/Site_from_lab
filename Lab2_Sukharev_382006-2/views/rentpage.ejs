@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html">
+		
+        <title> Велорент </title>
+
+		<link rel="stylesheet" type="text/css" href="demo.css" />
+		<link rel="stylesheet" type="text/css" href="set1.css" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<header class="codrops-header">
+				<h1><%=tmpbike.name %><span><%=tmpbike.description%> <p>цена <%=tmpbike.price%> руб/час</span></h1>
+				
+			</header>
+			<div class="content">
+				<div class="grid">
+					<figure class="effect-sadie">
+						<img src=<%=tmpbike.img %> alt="img12" >
+						<figcaption>
+							<div>
+							</div>
+						</figcaption>
+					</figure>
+					<form action="getlink.html" method="post">
+						<fieldset>
+						  <p class="contact-input">
+							<input type="text" name="name" placeholder="Введите ваше ФИО" autofocus required>
+						  </p>
+						  <p class="contact-input">
+							<label for="tel_num" class="contact_input">Введите ваш телефон:</label>
+							<input type="tel" name="tel_num" required>
+						  </p>
+						  <p class="contact-input">
+							<label for="date_time" class="contact_input">Введите дату бронирования:</label>
+							<input type="datetime-local" name="date_time" id="date_time" required>
+						  </p>
+						  <p class="contact-input">
+							<label for="select" class="select">
+							  <select name="subject" id="select" required>
+								<option value="" selected>Выберите пункт проката…</option>
+								<% for(var i=0;i<rental_points.length;i++){ %>
+									<option value="<%=rental_points[i].idr%>"><%=rental_points[i].adress%></option>
+								<%}%>
+							  </select>
+							</label>
+						  </p>
+						  <p >
+							<input type="hidden" name="idbike" value="<%=tmpbike.idbike%>" required>
+						  </p>
+
+						  <p class="contact-input">
+							<textarea name="message" placeholder="Дополнительная информация о бронировании..."></textarea>
+						  </p>
+					
+						  <p class="contact-submit">
+							<input type="submit" value="Забронировать">
+						  </p>
+						</fieldset>
+					  </form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html">
+		
+        <title> Велорент </title>
+
+		<link rel="stylesheet" type="text/css" href="demo.css" />
+		<link rel="stylesheet" type="text/css" href="set1.css" />
+	</head>
+	<body>
+		<div class="container">
+			
+			<header class="codrops-header">
+				<h1>Здравствуйте уважаемый клиент Велорент! 
+                <span>Ниже вы можете выбрать велосипед для аренды, 
+                    для выбора достаточно просто нажать на понравившуюся вам модель</span>
+                </h1>
+			</header>
+			<div class="content">
+
+				<h2>Модели</h2>
+				<div class="grid">
+                    <% for(var i=0;i<bikes.length;i++){%>
+                        <figure class="effect-sadie">
+                            <img src=<%=bikes[i].img %> >
+                            <figcaption>
+                                <div>
+                                <h2><%=bikes[i].name %></h2>    
+								<p><%=bikes[i].price %> руб./час</p>
+							</div>
+							<a href=" /rent<%=bikes[i].idbike %>"" >View more</a>
+						</figcaption>			
+					</figure>
+                    <%} %>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
